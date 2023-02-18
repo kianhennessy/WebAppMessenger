@@ -24,7 +24,7 @@ export const AuthProvider = ({children}) => {
             setUser(user);
             // stop loading when user is set
             setLoading(false);
-            // redirect to chats page if user is logged in
+            // redirect to message page if user is logged in
             if (user) navigate('/message');
         })
         // call useEffect when user or history changes (when redirect happens or add user)

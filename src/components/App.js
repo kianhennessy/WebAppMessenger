@@ -6,6 +6,7 @@ import { AuthProvider } from '../contexts/AuthContext';
 
 // import components
 import Login from './Login';
+import Message from "./Message";
 
 function App () {
   return (
@@ -15,6 +16,7 @@ function App () {
             <AuthProvider>
             <Routes>
                 <Route exact path="/" element={<Login/>}/>
+                <Route exact path="/message" element={<Message/>}/>
             </Routes>
             </AuthProvider>
         </Router>
