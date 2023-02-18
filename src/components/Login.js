@@ -6,7 +6,7 @@ import "firebase/app";
 import 'firebase/compat/firestore';
 import 'firebase/compat/auth';
 
-import {auth} from "./firebase";
+import {auth} from "../firebase";
 
 const Login = () => {
     return (
