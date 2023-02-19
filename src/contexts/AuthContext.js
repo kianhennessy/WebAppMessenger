@@ -14,7 +14,7 @@ export const AuthProvider = ({children}) => {
     // set up states
     const [loading, setLoading] = useState(true);
     // user object
-    const [user, setUser] = useState({});
+    const [user, setUser] = useState(null);
     // call useHistory hook to redirect user
     const navigate = useNavigate();
 
@@ -25,10 +25,15 @@ export const AuthProvider = ({children}) => {
             // stop loading when user is set
             setLoading(false);
             // redirect to message page if user is logged in
-            if (user) navigate('/message');
+            if (user) {
+                navigate('/message')
+            } else{
+                navigate('/')
+            }
+
         })
         // call useEffect when user or history changes (when redirect happens or add user)
-    }, [user, navigate(1)]);
+    });
 
     const value = {user};
 
