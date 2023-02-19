@@ -1,5 +1,5 @@
 import React, {useContext, useState, useEffect} from 'react';
-import {useNavigate} from 'react-router-dom';
+import {useHistory} from 'react-router-dom';
 import {auth} from '../firebase';
 
 // create context
@@ -16,24 +16,22 @@ export const AuthProvider = ({children}) => {
     // user object
     const [user, setUser] = useState(null);
     // call useHistory hook to redirect user
-    const navigate = useNavigate();
+    const history = useHistory();
 
     useEffect(() => {
         // grab user from firebase auth
         auth.onAuthStateChanged((user) => {
+            console.log('logged in', user);
+
             setUser(user);
             // stop loading when user is set
             setLoading(false);
             // redirect to message page if user is logged in
-            if (user) {
-                navigate('/message')
-            } else{
-                navigate('/')
-            }
+            if(user) history.push('/message');
 
         })
         // call useEffect when user or history changes (when redirect happens or add user)
-    });
+    }, [user, history]);
 
     const value = {user};
 

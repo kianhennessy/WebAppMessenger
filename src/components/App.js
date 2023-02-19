@@ -1,6 +1,6 @@
 import '../App.css';
 // allow for multipage applications
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
 import { AuthProvider } from '../contexts/AuthContext';
 
@@ -14,14 +14,17 @@ function App () {
 
         <Router>
             <AuthProvider>
-            <Routes>
-                <Route exact path="/" element={<Login/>}/>
-                <Route exact path="/message" element={<Message/>}/>
-            </Routes>
+            <Switch>
+                <Route path="/message" >
+                    <Message/>
+                </Route>
+                <Route path="/">
+                    <Login/>
+                </Route>
+            </Switch>
             </AuthProvider>
         </Router>
     </div>
   );
 }
-
 export default App;
