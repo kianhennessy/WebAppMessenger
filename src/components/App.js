@@ -1,17 +1,16 @@
 import '../App.css';
 // allow for multipage applications
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
 
 import { AuthProvider } from '../contexts/AuthContext';
 
 // import components
-import Login from './Login';
 import Message from "./Message";
+import Login from './Login';
 
 function App () {
   return (
-    <div style={{fontFamily: 'Arial'}}>
-
+    <div style={{fontFamily: 'Avenir'}}>
         <Router>
             <AuthProvider>
             <Switch>
@@ -25,6 +24,6 @@ function App () {
             </AuthProvider>
         </Router>
     </div>
-  );
+  )
 }
 export default App;

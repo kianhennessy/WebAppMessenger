@@ -7,38 +7,35 @@ const AuthContext = React.createContext();
 
 // export entire context
 // when function is called get access to populated context
-export const useAuth = () => useContext(AuthContext);
+export function useAuth() { return useContext(AuthContext) }
 
 // children will render js passed into AuthProvider
-export const AuthProvider = ({children}) => {
+export function AuthProvider({ children }) {
     // set up states
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(true)
     // user object
-    const [user, setUser] = useState(null);
+    const [user, setUser] = useState()
     // call useHistory hook to redirect user
-    const history = useHistory();
+    const history = useHistory()
 
     useEffect(() => {
         // grab user from firebase auth
         auth.onAuthStateChanged((user) => {
-            console.log('logged in', user);
-
-            setUser(user);
+            setUser(user)
             // stop loading when user is set
-            setLoading(false);
+            setLoading(false)
             // redirect to message page if user is logged in
-            if(user) history.push('/message');
-
+            if(user) history.push('/message')
         })
         // call useEffect when user or history changes (when redirect happens or add user)
-    }, [user, history]);
+    }, [user, history])
 
-    const value = {user};
+    const value = {user}
 
     return (
         <AuthContext.Provider value={value}>
             {/*show children components when not loading*/}
             {!loading && children}
         </AuthContext.Provider>
-    );
+    )
 }
